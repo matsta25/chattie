@@ -1,6 +1,6 @@
-# chattie
+# em
 
-Simple chat called Chattie.
+Simple chat called Em.
 
 Installation:
    - npm install
