@@ -1,15 +1,23 @@
+const funConsoleLog = false;
+
+// implement express
 const express = require('express')
 const app = express()
 
-app.get('/', (req, res) => res.send('Hello World!'))
+//implement http server
+const server = require('http').Server(app);
+const port = process.env.PORT || 3000;
 
+app.use(express.static(__dirname));
+
+app.get('/', (req, res) => res.sendFile(__dirname + 'index.html'));
 
 //just listener:
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+server.listen(port, () => console.log('Em listening on port ' + port));
 
 //nice console log part:
-
+if(funConsoleLog){
 var string = "Chattie.";
 var i = 0 ;
 
@@ -36,3 +44,4 @@ function niceConsoleLog() {
 }
 
 setInterval(niceConsoleLog, 250);
+}

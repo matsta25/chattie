@@ -1,21 +1,21 @@
 {
-  "name": "chattie",
+  "name": "em",
   "version": "1.0.0",
-  "description": "Simple chat called Chattie",
+  "description": "Simple chat called Em",
   "main": "index.js",
   "scripts": {
     "test": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matsta25/chattie.git"
+    "url": "git+https://github.com/matsta25/em-chat.git"
   },
   "author": "I & M",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matsta25/chattie/issues"
+    "url": "https://github.com/matsta25/em-chat/issues"
   },
-  "homepage": "https://github.com/matsta25/chattie#readme",
+  "homepage": "https://github.com/matsta25/em-chat#readme",
   "dependencies": {
     "express": "^4.16.2"
   }
