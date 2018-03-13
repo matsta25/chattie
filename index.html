@@ -1,20 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Em</title>
 
-    <!-- link main css -->
-    <link rel="stylesheet" href="main.css"> 
-    <!-- link font wff -->
-    <style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Em</title>
+
+  <!-- link bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- link main css -->
+  <link rel="stylesheet" href="main.css">
+  <!-- link font wff -->
+  <style>
     @import url('https://fonts.googleapis.com/css?family=Titillium+Web:300');
-    </style>
+  </style>
 
 </head>
+
 <body>
-    <h1>em</h1>
+  <h1>em</h1>
+
+  <!-- container with a logged in users  -->
+  <div class="col-md-2">
+    <div class="panel-heading">
+      <span class="glyphicon glyphicon-user"></span> Online (5)
+    </div>
+    <ul>
+      <li>user</li>
+      <li>user2</li>
+    </ul>
+  </div>
+
+  <!-- container with message display and type input -->
+  <div class="col-md-10">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        CHAT WINDOW
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li> messege </li>
+          <li> messege2 </li>
+        </ul>
+      </div>
+      <div class="panel-footer">
+        <form class="" action="index.html" method="post">
+          <input type="text" class="form-control input-lg" placeholder="Type here">
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>

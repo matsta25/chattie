@@ -5,7 +5,17 @@
 }
 
 h1 {
-    width: 100%;
     text-align: center;
-    padding-top: 50vh;
+}
+
+.panel-heading {
+  text-align: center;
+}
+/* hardcoded for visualization */
+.panel-body {
+  height: 700px;
+}
+
+li{
+  margin-left: 15px;
 }
