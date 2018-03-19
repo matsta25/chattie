@@ -21,7 +21,7 @@ io.on('connection', function(socket){
 });
 
 //just listener:
-server.listen(port, () => console.log('Em listening on port ' + port));
+server.listen(port, () => console.log('Em listening on port localhost:' + port));
 
 //nice console log part:
 if(funConsoleLog){
