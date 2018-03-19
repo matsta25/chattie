@@ -13,17 +13,53 @@ const io = require('socket.io')(server);
 
 app.use(express.static(__dirname));
 
-app.get('/', (req, res) => res.sendFile(__dirname + 'index.html'));
+app.get('/', function (req, res){
+    console.log(io.sockets.adapter.rooms);
+    res.sendFile(__dirname + 'index.html');
+});
 
-// console log as user connected
-io.on('connection', function(socket){
-    console.log('User connected from adress : ' + socket.handshake.address + '. Id: ' + socket.id);
+app.get('/onlineusers', function(reqest, response){
+    response.send(io.sockets.adapter.rooms);
 });
 
 //just listener:
 server.listen(port, () => console.log('Em listening on port localhost:' + port));
 
-//nice console log part:
+/* 
+socket io functions:
+*/
+
+// console log as user connected, left, joined
+io.on('connection', function(socket){
+    console.log('User connected from adress : ' + socket.handshake.address + '. Id: ' + socket.id);
+
+    //tell all clients that someone connected
+    io.emit('user joined', socket.id);
+
+    //client send message
+    socket.on('chat.message', function(message){
+        //emit to all
+        io.emit('chat.message', message);
+    });
+
+    socket.on('disconnect', function(){
+        console.log('User disconnected from adress : ' + socket.handshake.address + '. Id: ' + socket.id);
+
+        //tell all clients that someone disconnected
+        //broadcast <=> wszyscy oprocz ciebie
+        socket.broadcast.emit('user left', socket.id);
+    })
+});
+
+
+
+
+
+
+/*
+nice console log part:
+*/
+
 if(funConsoleLog){
 var string = "Chattie.";
 var i = 0 ;

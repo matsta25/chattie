@@ -28,7 +28,7 @@
   <div class="col-md-2">
     <div class="panel-heading">
       <span class="glyphicon glyphicon-user"></span> Online ({{ connectedUsers.length }})
-    </div>
+    </div>  
     <ul>
       <!-- v-for its forEach loop in Vuejs -->
       <li v-for="user in connectedUsers">{{ user }}</li>
@@ -42,31 +42,55 @@
         CHAT WINDOW
       </div>
       <div class="panel-body">
-        <ul>
-          <li> messege </li>
-          <li> messege2 </li>
-        </ul>
+          <ul class="chat" id="messages">
+              <li v-for="message in messages" class="left clearfix">
+                  <div v-if="message.type == 'info'" class="info">
+                      {{ message.msg }}
+                  </div>
+                  <div v-if="message.type == 'chat'">
+                      <span class="chat-img pull-left">
+              <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+          </span>
+                      <div class="chat-body clearfix">
+                          <div class="header">
+                              <strong class="primary-font">{{ message.user }}</strong> <small class="pull-right text-muted">
+                          <span class="glyphicon glyphicon-time"></span>&nbsp;{{ message.timestamp }}</small>
+                          </div>
+                          <p>
+                              {{ message.text }}
+                          </p>
+                      </div>
+                  </div>
+              </li>
+          </ul>
       </div>
       <div class="panel-footer">
-        <form class="" action="index.html" method="post">
-          <input type="text" class="form-control input-lg" placeholder="Type here">
-        </form>
+          <form @submit.prevent="send">
+              <input v-model="message.text" v-on:keyup="usersAreTyping" v-on:keyup.13="stoppedTyping('13')" v-on:keyup.8="stoppedTyping('8')" type="text" class="form-control input-lg" placeholder="Type chat here" />
+          </form>
+
       </div>
     </div>
   </div>
+
 </div>
 <!--
   skrypty testowo w indexie powinno byc w osobnym pliku
- -->
+-->
+  
+  <!-- socket io 
+    or from cdn or from node_modules(next below)
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  -->
+  <script src="/socket.io/socket.io.js"></script>
+  
 <!-- Vue js CDN: -->
- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
- <!-- Vue js script: -->
- <script src="client.js"></script>
- <!-- socket io -->
- <script src="/socket.io/socket.io.js"></script>
- <script>
-   var socket = io();
- </script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- Axios (similar to ajax) js CDN: -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+<!-- Vue js script: -->
+<script src="client.js"></script>
 
 </body>
 
