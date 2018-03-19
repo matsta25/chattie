@@ -8,12 +8,19 @@ const app = express()
 const server = require('http').Server(app);
 const port = process.env.PORT || 3000;
 
+// implement express
+const io = require('socket.io')(server);
+
 app.use(express.static(__dirname));
 
 app.get('/', (req, res) => res.sendFile(__dirname + 'index.html'));
 
-//just listener:
+// console log as user connected
+io.on('connection', function(socket){
+    console.log('User connected from adress : ' + socket.handshake.address + '. Id: ' + socket.id);
+});
 
+//just listener:
 server.listen(port, () => console.log('Em listening on port ' + port));
 
 //nice console log part:
