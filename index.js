@@ -11,10 +11,13 @@ const port = process.env.PORT || 3000;
 // implement express
 const io = require('socket.io')(server);
 
+// implement colors
+var colors = require('colors');
+
+
 app.use(express.static(__dirname));
 
 app.get('/', function (req, res){
-    console.log(io.sockets.adapter.rooms);
     res.sendFile(__dirname + 'index.html');
 });
 
@@ -23,7 +26,7 @@ app.get('/onlineusers', function(reqest, response){
 });
 
 //just listener:
-server.listen(port, () => console.log('Em listening on port localhost:' + port));
+server.listen(port, () => console.log(('Em listening on port localhost:' + port).rainbow));
 
 /* 
 socket io functions:
@@ -31,7 +34,7 @@ socket io functions:
 
 // console log as user connected, left, joined
 io.on('connection', function(socket){
-    console.log('User connected from adress : ' + socket.handshake.address + '. Id: ' + socket.id);
+    console.log(('User connected from adress : ' + socket.handshake.address + '. Id: ' + socket.id).green);
 
     //tell all clients that someone connected
     io.emit('user joined', socket.id);
@@ -43,7 +46,7 @@ io.on('connection', function(socket){
     });
 
     socket.on('disconnect', function(){
-        console.log('User disconnected from adress : ' + socket.handshake.address + '. Id: ' + socket.id);
+        console.log(('User disconnected from adress : ' + socket.handshake.address + '. Id: ' + socket.id).red);
 
         //tell all clients that someone disconnected
         //broadcast <=> wszyscy oprocz ciebie
