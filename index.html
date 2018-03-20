@@ -31,7 +31,7 @@
     </div>  
     <ul>
       <!-- v-for its forEach loop in Vuejs -->
-      <li v-for="user in connectedUsers">{{ user }}</li>
+      <li v-for="user in connectedUsers">{{ user }}&nbsp; <span v-if="userIsTyping(user)" class="glyphicon glyphicon-pencil">...</span></li>
     </ul>
   </div>
 
@@ -89,6 +89,10 @@
 
 <!-- Axios (similar to ajax) js CDN: -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
+<!-- Moment.js CDN: -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+
 <!-- Vue js script: -->
 <script src="client.js"></script>
 

@@ -45,6 +45,16 @@ io.on('connection', function(socket){
         io.emit('chat.message', message);
     });
 
+    //clinet sends "user typing" event to server
+    socket.on('user typing', function(username){
+        io.emit('user typing', username);
+    });
+
+    //client sends 'stopped typing' event
+    socket.on('stopped typing', function(username){
+        io.emit('stopped typing', username);
+    });
+
     socket.on('disconnect', function(){
         console.log(('User disconnected from adress : ' + socket.handshake.address + '. Id: ' + socket.id).red);
 
