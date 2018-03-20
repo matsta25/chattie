@@ -9,6 +9,13 @@ Run it:
    - node index.js
 
 Stack:
-  -HTML5
-  ...
+  - html5
+  - css3
+  - node.js
+  - vue.js
+  - axios
+  - bootstrap
+  - fontawsome
+  - socket.io
+  - ...
 
