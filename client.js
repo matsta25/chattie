@@ -1,7 +1,5 @@
 var socket = io();
 
-var audio = new Audio('helloDarkness.mp3');
-
 new Vue({
     el: '#app',
     data: {
@@ -59,7 +57,7 @@ new Vue({
             this.messages.push(message);
             var i = this.messages.lastIndexOf(message);
             if(this.messages[i].text == '!hello')
-                audio.play();
+                this.$ref.myDiv.play();
         }.bind(this));
 
         //server emits 'user typing'
