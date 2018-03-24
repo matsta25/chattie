@@ -1,5 +1,7 @@
 var socket = io();
 
+var audio = new Audio('helloDarkness.mp3');
+
 new Vue({
     el: '#app',
     data: {
@@ -56,8 +58,8 @@ new Vue({
         socket.on('chat.message', function (message) {
             this.messages.push(message);
             var i = this.messages.lastIndexOf(message);
-            if(this.messages[i].text =='!hello')
-                this.helloDarkness;
+            if(this.messages[i].text == '!hello')
+                audio.play();
         }.bind(this));
 
         //server emits 'user typing'
@@ -89,8 +91,7 @@ new Vue({
     },
     computed: {
         helloDarkness: function () {
-            var audio = new Audio('helloDarkness.mp3');
-            audio.play();
+            //function to music Hę?!
         }
     },
     methods: {
