@@ -55,6 +55,9 @@ new Vue({
         //if server emits 'chat.message', update messages array
         socket.on('chat.message', function (message) {
             this.messages.push(message);
+            var i = this.messages.lastIndexOf(message);
+            if(this.messages[i].text =='!hello')
+                this.helloDarkness;
         }.bind(this));
 
         //server emits 'user typing'
@@ -95,8 +98,6 @@ new Vue({
             this.message.type = "chat";
             this.message.user = socket.id;
             this.message.timestamp = moment().calendar();
-            if(this.message.text =='!hello')
-                this.helloDarkness;
             socket.emit('chat.message', this.message);
             this.message.type = '';
             this.message.user = '';
