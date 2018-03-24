@@ -19,3 +19,15 @@ h1 {
 li{
   margin-left: 15px;
 }
+
+.addons-panel{
+  background-color: white;
+  font-size: 24px;
+  display: flex;
+  list-style-type: none;
+}
+
+.addons-panel li{
+  border: 1px solid black;
+  cursor: pointer;
+}

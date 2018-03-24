@@ -12,7 +12,21 @@ new Vue({
             "text": "",
             "timestamp": ""
         },
-        areTyping: []
+        areTyping: [],
+        isShow: false,
+        lennys: [
+            { face: '( ͡° ͜ʖ ͡°)' },
+            { face: '¯\_(ツ)_/¯' },
+            { face: '(ง ͠° ͟ل͜ ͡°)ง' },
+            { face: 'ಠ_ಠ' },
+            { face: '(☞ﾟ∀ﾟ)☞' },
+            { face: '\ (•◡•) /' }
+        ],
+        isShowGif: false,
+        status: '',
+        query: '',
+        keyApi: "S5DI6R8Mq2NZsLgkLAUgk5gULADJ0j2f",
+        limit: 3
     },
     created: function () {
         socket.on('user joined', function (socketId) {
@@ -26,7 +40,7 @@ new Vue({
             }.bind(this));
             var infoMsg = {
                 "type": "info",
-                "msg": "User "+ socketId + "has joined."
+                "msg": "User " + socketId + "has joined."
             }
             this.messages.push(infoMsg);
         }.bind(this));
@@ -44,15 +58,15 @@ new Vue({
         }.bind(this));
 
         //server emits 'user typing'
-        socket.on('user typing', function(username){
+        socket.on('user typing', function (username) {
             this.areTyping.push(username);
         }.bind(this));
 
         //server emits 'stopped typing'
-        socket.on('stopped typing', function (username){
+        socket.on('stopped typing', function (username) {
             var index = this.areTyping.indexOf(username);
-            if(index >=0){
-                this.areTyping.splice(index,1);
+            if (index >= 0) {
+                this.areTyping.splice(index, 1);
             }
         }.bind(this));
 
@@ -65,10 +79,16 @@ new Vue({
             }
             var infoMsg = {
                 "type": "info",
-                "msg": "User "+ socketId + "has left."
+                "msg": "User " + socketId + "has left."
             }
             this.messages.push(infoMsg);
         }.bind(this));
+    },
+    computed: {
+        helloDarkness: function () {
+            var audio = new Audio('helloDarkness.mp3');
+            audio.play();
+        }
     },
     methods: {
         send: function () {
@@ -94,14 +114,28 @@ new Vue({
             }
         },
         stoppedTyping: function (keycode) {
-            if(keycode == '13' || (keycode == '8' && this.message.text == '')){
+            if (keycode == '13' || (keycode == '8' && this.message.text == '')) {
                 var index = this.areTyping.indexOf(socket.id);
-                if(index>=0){
-                    this.areTyping.splice(index,1);
+                if (index >= 0) {
+                    this.areTyping.splice(index, 1);
                     socket.emit('stopped typing', socket.id);
                 }
             }
 
+        },
+        lennyToInput: function (lenny) {
+            this.message.text += lenny.face;
+
+        },
+        loadGif: function () {
+            this.status = 'Loading...';
+            var vm = this;
+            axios.get('//api.giphy.com/v1/gifs/search?q=' + this.query + "&api_key=" + this.keyApi + "&limit=" + this.limit).then(function (response) {
+                vm.status = response.data.data["0"].bitly_gif_url;
+                console.log(response);
+            }).catch(function (error) {
+                vm.status = 'Error ' + error;
+            })
         }
     }
 })
