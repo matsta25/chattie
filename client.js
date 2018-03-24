@@ -57,7 +57,8 @@ new Vue({
             this.messages.push(message);
             var i = this.messages.lastIndexOf(message);
             if(this.messages[i].text == '!hello')
-                this.$ref.myDiv.play();
+                this.$refs.myDiv.play();
+            this.autoScroll();
         }.bind(this));
 
         //server emits 'user typing'
@@ -138,6 +139,11 @@ new Vue({
             }).catch(function (error) {
                 vm.status = 'Error ' + error;
             })
+        },
+        autoScroll: function(){
+            var elem = document.getElementById('main-body');
+            elem.scrollTop = elem.scrollHeight;
+            console.log(elem.scrollTop + "  "+ elem.scrollHeight);
         }
     }
 })

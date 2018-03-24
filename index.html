@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Em</title>
-
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
   <!-- link bootstrap -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- link main css -->
@@ -38,7 +38,10 @@
       <ul>
         <!-- v-for its forEach loop in Vuejs -->
         <li v-for="user in connectedUsers">{{ user }}&nbsp;
-          <span v-if="userIsTyping(user)" class="glyphicon glyphicon-pencil">...</span>
+
+            <span v-if="userIsTyping(user)" class="glyphicon glyphicon-pencil">
+                <span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span>
+            </span>
         </li>
       </ul>
     </div>
@@ -49,7 +52,7 @@
         <div class="panel-heading">
           CHAT WINDOW
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="main-body">
           <ul class="chat" id="messages">
             <li v-for="message in messages" class="left clearfix">
               <div v-if="message.type == 'info'" class="info">
@@ -106,7 +109,6 @@
   <!--
   skrypty testowo w indexie powinno byc w osobnym pliku
 -->
-
   <!-- socket io 
     or from cdn or from node_modules(next below)
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
