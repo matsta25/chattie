@@ -95,6 +95,8 @@ new Vue({
             this.message.type = "chat";
             this.message.user = socket.id;
             this.message.timestamp = moment().calendar();
+            if(this.message.text =='!hello')
+                this.helloDarkness;
             socket.emit('chat.message', this.message);
             this.message.type = '';
             this.message.user = '';
