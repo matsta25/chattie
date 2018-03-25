@@ -18,14 +18,35 @@ h1 {
 
 .panel-heading {
   text-align: center;
+  background-color: var(--green-color) !important;
+  border-color: var(--green-color) !important;
+}
+.panel-primary {
+  border-color: var(--green-color) !important;
 }
 /* hardcoded for visualization */
 .panel-body {
   height: 70vh;
   overflow-y: auto;
   overflow-x:hidden;
-  padding: 15px 15px 50px 15px;
+  padding: 0px 0px 50px 0px;
+  background-color: var(--green-color) !important;
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+  ul li:nth-child(odd) {
+    background: var(--orange-color);
+}
+
+ul li:nth-child(even) {
+    background: var(--gray-color);
+}
+
 
 li{
   margin-left: 15px;
