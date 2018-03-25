@@ -134,8 +134,8 @@ new Vue({
             this.status = 'Loading...';
             var vm = this;
             axios.get('//api.giphy.com/v1/gifs/search?q=' + this.query + "&api_key=" + this.keyApi + "&limit=" + this.limit).then(function (response) {
-                vm.status = response.data.data["0"].bitly_gif_url;
-                console.log(response);
+                vm.status = response.data.data[0].images.preview_gif.url.slice(6);
+                console.log(vm.status);
             }).catch(function (error) {
                 vm.status = 'Error ' + error;
             })
