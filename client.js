@@ -10,7 +10,8 @@ new Vue({
             "action": "",
             "user": "",
             "text": "",
-            "timestamp": ""
+            "timestamp": "",
+            "isGif": false
         },
         areTyping: [],
         isShow: false,
@@ -26,7 +27,8 @@ new Vue({
         status: '',
         query: '',
         keyApi: "S5DI6R8Mq2NZsLgkLAUgk5gULADJ0j2f",
-        limit: 3
+        limit: '3',
+        gifs: []
     },
     created: function () {
         socket.on('user joined', function (socketId) {
@@ -54,6 +56,13 @@ new Vue({
 
         //if server emits 'chat.message', update messages array
         socket.on('chat.message', function (message) {
+            if( message.text == ''){
+                return;
+            }
+            if( message.text.includes("/media")){
+                message.text = '<img src="' + message.text + '">';
+                message.isGif = true;
+            }
             this.messages.push(message);
             var i = this.messages.lastIndexOf(message);
             if(this.messages[i].text == '!hello')
@@ -131,11 +140,14 @@ new Vue({
 
         },
         loadGif: function () {
+            this.gifs = [];
             this.status = 'Loading...';
             var vm = this;
             axios.get('//api.giphy.com/v1/gifs/search?q=' + this.query + "&api_key=" + this.keyApi + "&limit=" + this.limit).then(function (response) {
-                vm.status = response.data.data[0].images.preview_gif.url.slice(6);
-                console.log(vm.status);
+                for(var i = 0; i < vm.limit ; i++){
+                    vm.status = response.data.data[i].images.preview_gif.url.slice(6);
+                    vm.gifs.push(vm.status);
+                }
             }).catch(function (error) {
                 vm.status = 'Error ' + error;
             })
@@ -144,6 +156,11 @@ new Vue({
             var elem = document.getElementById('main-body');
             elem.scrollTop = elem.scrollHeight;
             console.log(elem.scrollTop + "  "+ elem.scrollHeight);
+        },
+        sendGif: function (gif){
+            console.log(gif);
+            this.message.text = gif;
+            this.send();
         }
     }
 })

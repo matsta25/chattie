@@ -69,15 +69,17 @@
                     <small class="pull-right text-muted">
                       <span class="glyphicon glyphicon-time"></span>&nbsp;{{ message.timestamp }}</small>
                   </div>
-                  <p>
+                  <p v-if="message.text.isGif == true">
                     {{ message.text }}
-                  </p>
+                  </p v-else>
+                  <p v-html="message.text"></p>
                 </div>
               </div>
             </li>
           </ul>
         </div>
         <div class="panel-footer">
+          
 
           <div v-show="isShow" class="addons-panel">
             <li v-for="lenny in lennys">
@@ -89,7 +91,9 @@
               <input v-model="query" type="text">
               <button v-on:click="loadGif()">Search</button>
               <!--{{status}}-->
-              <img v-bind:src="status" >
+              <li v-for="gif in gifs">
+                <img v-on:click="sendGif(gif)" v-bind:src="gif" >
+              </li>
                 </div>
 
             <form @submit.prevent="send">
