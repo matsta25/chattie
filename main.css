@@ -1,12 +1,17 @@
-:root{
+:root {
   --red-color: #DB3340; 
   --orange-color: #E8B71A;
   --gray-color: #F7EAC8;
   --green-color: #1FDA9A;
   --blue-color: #28ABE3;
 }
+body {
+  background: var(--red-color);  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, var(--orange-color), var(--red-color) 40%);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right,  var(--orange-color), var(--red-color) 40%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
-*{
+* {
     font-family: 'Titillium Web', sans-serif;
     margin: 0;
     padding: 0;
@@ -16,51 +21,65 @@ h1 {
     text-align: center;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 0 0 3px 15px;
+  width: 100%;
+}
+
+#panel-online-green-border {
+  border-right-color: var(--green-color);
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
 .panel-heading {
-  text-align: center;
-  background-color: var(--green-color) !important;
-  border-color: var(--green-color) !important;
+  text-align: center !important;
 }
-.panel-primary {
-  border-color: var(--green-color) !important;
+
+.panel-border {
+  border-color: transparent !important;
 }
+
+.messege-background {
+  background-color: transparent !important; 
+  margin-left: 10% !important;
+  margin-right: 10% !important;
+}
+
+/* .login-color { uncomment this to see version with colored login
+  background: var(--green-color) !important;
+  width: 30%;
+} */
 /* hardcoded for visualization */
 .panel-body {
   height: 70vh;
   overflow-y: auto;
   overflow-x:hidden;
   padding: 0px 0px 50px 0px;
-  background-color: var(--green-color) !important;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-
-  ul li:nth-child(odd) {
+  /* ul li:nth-child(odd) {
     background: var(--orange-color);
 }
 
 ul li:nth-child(even) {
     background: var(--gray-color);
-}
-
-
-li{
-  margin-left: 15px;
-}
+} */
 
 .addons-panel{
-  background-color: white;
-  font-size: 24px;
+  background-color: transparent;
+  /* font-size: 24px; */
   display: flex;
   list-style-type: none;
 }
 
 .addons-panel li{
-  border: 1px solid black;
   cursor: pointer;
 }
 

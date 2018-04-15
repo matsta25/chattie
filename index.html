@@ -8,18 +8,20 @@
   <title>Em</title>
   <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
   <!-- link bootstrap -->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <!-- link main css -->
   <link rel="stylesheet" href="main.css">
   <!-- link font wff -->
   <style>
     @import url('//fonts.googleapis.com/css?family=Titillium+Web:300');
   </style>
+  <!-- Import materialize.css -->
+  <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
 
 </head>
 
 <body>
-  <div id="app">
+  <div id="app" class="row">
 
       <audio id="myDiv" ref="myDiv">
           <source src="helloDarkness.ogg" type="audio/ogg">
@@ -31,15 +33,12 @@
     <h1>em</h1>
 
     <!-- container with a logged users  -->
-    <div class="col-md-2">
-      <div class="panel-heading">
-        <span class="glyphicon glyphicon-user"></span> Online ({{ connectedUsers.length }})
-      </div>
-      <ul>
+    <div class="col s2">
+      <div class="panel-heading transparent">Online ({{ connectedUsers.length }})</div>
+      <ul id="panel-online-green-border" class="collection with-header transparent">
         <!-- v-for its forEach loop in Vuejs -->
-        <li v-for="user in connectedUsers">{{ user }}&nbsp;
-
-            <span v-if="userIsTyping(user)" class="glyphicon glyphicon-pencil">
+        <li v-for="user in connectedUsers"  class="collection-item  transparent panel-border">{{ user }}&nbsp;
+            <span v-if="userIsTyping(user)">
                 <span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span>
             </span>
         </li>
@@ -48,23 +47,21 @@
 
 
     <!-- container with message display and type input -->
-    <div class="col-md-10">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          CHAT WINDOW
-        </div>
-        <div class="panel-body" id="main-body">
-          <ul class="chat" id="messages">
+    <div class="col s10">
+      <div>
+        <div class="panel-body">
+          <div class="panel-heading transparent">CHAT WINDOW</div>
+          <ul class="chat collection panel-border" id="messages">
             <li v-for="message in messages" class="left clearfix">
-              <div v-if="message.type == 'info'" class="info">
+              <div v-if="message.type == 'info'" class="info messege-background">
                 {{ message.msg }}
               </div>
-              <div v-if="message.type == 'chat'">
-                <span class="chat-img pull-left">
-                  <img src="//placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                </span>
+              <div v-if="message.type == 'chat'" class="collection-item messege-background">
+                <!-- <span class="chat-img pull-left">
+                    <i class="material-icons">account_circle</i>
+                </span> -->
                 <div class="chat-body clearfix">
-                  <div class="header">
+                  <div class="header login-color">
                     <strong class="primary-font">{{ message.user }}</strong>
                     <small class="pull-right text-muted">
                       <span class="glyphicon glyphicon-time"></span>&nbsp;{{ message.timestamp }}</small>
@@ -78,35 +75,35 @@
             </li>
           </ul>
         </div>
-        <div class="panel-footer">
-          
-
-          <div v-show="isShow" class="addons-panel">
-            <li v-for="lenny in lennys">
-              <div v-on:click="lennyToInput(lenny)">{{ lenny.face }}</div>
-            </li>
-          </div>
-          <div class="input-group">
-            <div v-show="isShowGif" class="addons-panel">
-              <input v-model="query" type="text">
-              <button v-on:click="loadGif()">Search</button>
-              <!--{{status}}-->
-              <li v-for="gif in gifs">
-                <img v-on:click="sendGif(gif)" v-bind:src="gif" >
+        
+        <footer class="page-footer transparent">
+          <div class="panel-footer">
+            <div v-show="isShow" class="addons-panel">
+              <li v-for="lenny in lennys">
+                <a v-on:click="lennyToInput(lenny)" class="waves-effect waves-light btn">{{ lenny.face }}</a>
               </li>
-                </div>
+            </div>
+            <div class="input-group">
+              <div v-show="isShowGif" class="addons-panel">
+                <input v-model="query" type="text">
+                <button v-on:click="loadGif()">Search</button>
+                <!--{{status}}-->
+                <li v-for="gif in gifs">
+                  <img v-on:click="sendGif(gif)" v-bind:src="gif" >
+                </li>
+                  </div>
 
-            <form @submit.prevent="send">
-              <input v-model="message.text" v-on:keyup="usersAreTyping" v-on:keyup.13="stoppedTyping('13')" v-on:keyup.8="stoppedTyping('8')"
-                type="text" class="form-control input-lg" placeholder="Type chat here" />
-            </form>
-            <span class="input-group-btn">
-              <button v-on:click="isShow = !isShow" class="btn btn-default btn-lg" type="button"> ( ͡° ͜ʖ ͡°) </button>
-              <button v-on:click="isShowGif = !isShowGif" class="btn btn-default btn-lg" type="button"> GIF's </button>
+                  <form @submit.prevent="send">
+                    <input v-model="message.text" v-on:keyup="usersAreTyping" v-on:keyup.13="stoppedTyping('13')" v-on:keyup.8="stoppedTyping('8')"
+                      type="text" class="form-control input-lg" placeholder="Type chat here" />
+                  </form>
+              <div class="fixed-action-btn horizontal click-to-toggle">
+                <a v-on:click="isShow = !isShow" class="waves-effect waves-light btn" type="button"> ( ͡° ͜ʖ ͡°) </a>
+                <a v-on:click="isShowGif = !isShowGif" class="waves-effect waves-light btn" type="button"> GIF's </a>
+              </div>
 
-
-            </span>
-          </div>
+            </div>
+          </footer>
         </div>
       </div>
     </div>
@@ -115,6 +112,11 @@
   <!--
   skrypty testowo w indexie powinno byc w osobnym pliku
 -->
+
+  <!-- materialize scripts: -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+
   <!-- socket io 
     or from cdn or from node_modules(next below)
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
