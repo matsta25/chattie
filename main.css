@@ -5,6 +5,36 @@
   --green-color: #1FDA9A;
   --blue-color: #28ABE3;
 }
+
+/* preloader */
+.preloaderSeciton {    
+  transition: opacity .8s ease;
+  z-index: 2;
+  overflow: hidden;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.preloader-hiding {
+  opacity: 0;
+}
+
+.preloader-hidden {
+  display: none;
+}
+
+.mainSection {
+    z-index: 0;
+    overflow: hidden;
+}
+
+.mainSection-showing{
+    display: none;
+}
+
+
 body {
   background: var(--red-color);  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, var(--orange-color), var(--red-color) 40%);  /* Chrome 10-25, Safari 5.1-6 */
@@ -13,8 +43,8 @@ body {
 
 * {
     font-family: 'Titillium Web', sans-serif;
-    margin: 0;
-    padding: 0;
+    /* margin: 0; */
+    /* padding: 0; */
 }
 
 h1 {
@@ -87,3 +117,4 @@ ul li:nth-child(even) {
 .loader__dot { animation: 1s blink infinite }
 .loader__dot:nth-child(2) { animation-delay: 250ms }
 .loader__dot:nth-child(3) { animation-delay: 500ms }
+
