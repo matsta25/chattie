@@ -7,194 +7,128 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Em</title>
   <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
-  <!-- link bootstrap -->
-  <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-  <!-- link main css -->
-  <link rel="stylesheet" href="main.css">
-  <!-- link font wff -->
+  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/node_modules/material-design-lite/material.min.css">
+  <script src="/node_modules/material-design-lite/material.min.js"></script>
+  <link rel="stylesheet" href="/static/css/icon.css">
+
   <style>
     @import url('//fonts.googleapis.com/css?family=Titillium+Web:300');
   </style>
-  <!-- Import materialize.css -->
-  <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
-  />
 
 </head>
 
 <body>
-  <!-- preloader -->
-  <div class="preloaderSeciton">
-    <div class="preloaderSecitonBackgroud">
-      <div class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-
-        <div class="spinner-layer spinner-red">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-
-        <div class="spinner-layer spinner-yellow">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-
-        <div class="spinner-layer spinner-green">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
+    <div id="preloader">
       </div>
-    </div>
-  </div>
+  <div id="app">
 
+   
 
-  <div class="mainSection mainSection-showing">
-    <div id="app" class="row">
+    <audio id="myDiv" ref="myDiv">
+      <source src="/static/sounds/helloDarkness.ogg" type="audio/ogg">
+      <source src="/static/sounds/helloDarkness.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+    </audio>
 
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Em</span>
+          <div class="mdl-layout-spacer"></div>
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" target="_blank" href="//github.com/matsta25/em-chat">GitHub</a>
+          </nav>
+        </div>
+      </header>
 
-
-      <!-- main section -->
-      <audio id="myDiv" ref="myDiv">
-        <source src="helloDarkness.ogg" type="audio/ogg">
-        <source src="helloDarkness.mp3" type="audio/mpeg"> Your browser does not support the audio element.
-      </audio>
-
-      <h1>em</h1>
-
-      <!-- container with a logged users  -->
-      <div class="col s2">
-        <div class="panel-heading transparent">Online ({{ connectedUsers.length }})</div>
-        <ul id="panel-online-green-border" class="collection with-header transparent">
-          <!-- v-for its forEach loop in Vuejs -->
-          <li v-for="user in connectedUsers" class="collection-item  transparent panel-border">{{ user }}&nbsp;
-            <span v-if="userIsTyping(user)">
-              <span class="loader__dot">.</span>
-              <span class="loader__dot">.</span>
-              <span class="loader__dot">.</span>
-            </span>
-          </li>
-        </ul>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">
+          <span class="glyphicon glyphicon-user"></span> Online ({{ connectedUsers.length }})</span>
+        <nav class="mdl-navigation">
+          <ul class="mdl-list">
+            <li class="mdl-list__item" v-for="user in connectedUsers">
+              <span class="mdl-list__item-primary-content"></span>{{ user }}&nbsp;
+              <span v-if="userIsTyping(user)" class="glyphicon glyphicon-pencil">
+                <span class="loader__dot">.</span>
+                <span class="loader__dot">.</span>
+                <span class="loader__dot">.</span>
+              </span>
+            </li>
+          </ul>
+        </nav>
       </div>
 
-
-      <!-- container with message display and type input -->
-      <div class="col s10">
-        <div>
-          <div class="panel-body">
-            <div class="panel-heading transparent">CHAT WINDOW</div>
-            <ul class="chat collection panel-border" id="messages">
-              <li v-for="message in messages" class="left clearfix">
-                <div v-if="message.type == 'info'" class="info messege-background">
-                  {{ message.msg }}
-                </div>
-                <div v-if="message.type == 'chat'" class="collection-item messege-background">
-                  <!-- <span class="chat-img pull-left">
-                    <i class="material-icons">account_circle</i>
-                </span> -->
-                  <div class="chat-body clearfix">
-                    <div class="header login-color">
-                      <strong class="primary-font">{{ message.user }}</strong>
-                      <small class="pull-right text-muted">
-                        <span class="glyphicon glyphicon-time"></span>&nbsp;{{ message.timestamp }}</small>
-                    </div>
+      <main class="mdl-layout__content">
+        <div class="page-content mdl-list">
+          <div id="main-body">
+            <ul>
+              <li v-for="message in messages" class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  <i class="material-icons mdl-list__item-icon">person</i>
+                  <div v-if="message.type == 'info'">
+                    {{ message.msg }}
+                  </div>
+                  <div class="message-content" v-if="message.type == 'chat'">
+                    <strong class="primary-font">{{ message.user }}</strong>
+                    <small class="timed">
+                      <span class="glyphicon glyphicon-time"></span>&nbsp;{{ message.timestamp }}</small>
                     <p v-if="message.text.isGif == true">
                       {{ message.text }}
                     </p v-else>
                     <p v-html="message.text"></p>
                   </div>
-                </div>
+                </span>
               </li>
             </ul>
           </div>
+        </div>
 
-          <footer class="page-footer transparent">
-            <div class="panel-footer">
-              <div v-show="isShow" class="addons-panel">
+        <div class="footer">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+              <div class="lenny-faces-list" v-show="isShow">
                 <li v-for="lenny in lennys">
-                  <a v-on:click="lennyToInput(lenny)" class="waves-effect waves-light btn">{{ lenny.face }}</a>
+                  <div class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" v-on:click="lennyToInput(lenny)">{{ lenny.face }}</div>
                 </li>
               </div>
-              <div class="input-group">
-                <div v-show="isShowGif" class="addons-panel">
-                  <input v-model="query" type="text">
-                  <button v-on:click="loadGif()">Search</button>
-                  <!--{{status}}-->
+            </div>
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+              <div v-show="isShowGif">
+                <input class="mdl-textfield__input" v-model="query" type="text" v-on:keyup.13="loadGif()" placeholder="Gif search">
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                </div>
+                <div class="gifs-list" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                   <li v-for="gif in gifs">
-                    <img v-on:click="sendGif(gif)" v-bind:src="gif">
+                    <img v-on:click="sendGif(gif); isShowGif= false" v-bind:src="gif">
                   </li>
                 </div>
-
-                <form @submit.prevent="send">
-                  <input v-model="message.text" v-on:keyup="usersAreTyping" v-on:keyup.13="stoppedTyping('13')" v-on:keyup.8="stoppedTyping('8')"
-                    type="text" class="form-control input-lg" placeholder="Type chat here" />
-                </form>
-                <div class="fixed-action-btn horizontal click-to-toggle">
-                  <a v-on:click="isShow = !isShow" class="waves-effect waves-light btn" type="button"> ( ͡° ͜ʖ ͡°) </a>
-                  <a v-on:click="isShowGif = !isShowGif" class="waves-effect waves-light btn" type="button"> GIF's </a>
-                </div>
-
               </div>
-          </footer>
+            </div>
+            <div class="mdl-cell mdl-cell--10-col mdl-cell--6-col-tablet mdl-cell--2-col-phone">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label footer-input">
+                <form @submit.prevent="send">
+                  <input class="mdl-textfield__input" v-model="message.text" v-on:keyup="usersAreTyping" v-on:keyup.13="stoppedTyping('13')"
+                    v-on:keyup.8="stoppedTyping('8')" type="text" placeholder="Type here..." />
+                </form>
+              </div>
+            </div>
+            <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" v-on:click="isShow = !isShow; isShowGif= false"
+                type="button">LF's</button>
+            </div>
+            <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" v-on:click="isShowGif = !isShowGif; isShow=false"
+                type="button"> GIF's </button>
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
-    <!--
-  skrypty testowo w indexie powinno byc w osobnym pliku
--->
-
-    <!-- materialize scripts: -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
-
-    <!-- socket io 
-    or from cdn or from node_modules(next below)
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-  -->
-    <script src="/socket.io/socket.io.js"></script>
-
-    <!-- Vue js CDN: -->
-    <script src="//cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-    <!-- Axios (similar to ajax) js CDN: -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-
-    <!-- Moment.js CDN: -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
-
-    <!-- Vue js script: -->
-    <script src="client.js"></script>
-
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/static/js/vue.js"></script>
+  <script src="/static/js/axios.js"></script>
+  <script src="/static/js/moment.min.js"></script>
+  <script src="client.js"></script>
 </body>
-
 </html>

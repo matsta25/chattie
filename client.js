@@ -1,15 +1,11 @@
-// preloader
-var preloaderEl = document.querySelector('.preloaderSeciton');
-var mainSection = document.querySelector('.mainSection-showing');
+var preloaderEl = document.querySelector('#preloader');
 
 window.addEventListener('load', function () {
     preloaderEl.classList.add('preloader-hiding');
-    mainSection.classList.remove('mainSection-showing');
     preloaderEl.addEventListener('transitionend', function () {
-        preloaderEl.classList.add('preloader-hidden');
-        preloaderEl.classList.remove('preloader-hiding');
-        console.log("preloader done");
-    })
+        this.classList.add('preloader-hidden');
+        this.classList.remove('preloader-hiding');
+    });
 });
 
 var socket = io();
@@ -35,13 +31,31 @@ new Vue({
             { face: '(ง ͠° ͟ل͜ ͡°)ง' },
             { face: 'ಠ_ಠ' },
             { face: '(☞ﾟ∀ﾟ)☞' },
-            { face: '\ (•◡•) /' }
+            { face: '\ (•◡•) /' },
+            { face: '(☭ ͜ʖ ☭)' },
+            { face: '( ‾ ʖ̫ ‾)' },
+            { face: 'ʕ ͡° ͜ʖ ͡°ʔ' },
+            { face: '(͠≖ ͜ʖ͠≖)' },
+            { face: '( ͠° ͟ʖ ͡°)' },
+            { face: '( ͡~ ͜ʖ ͡°)' },
+            { face: '( ͡◉ ͜ʖ ͡◉)' },
+            { face: 'ヽ(σ ε σ)ﾉ' },
+            { face: '୧`ѽ´୨' },
+            { face: '└[@෴@]┘' },
+            { face: 'ᖗ⌐■人■ᖘ' },
+            { face: 'ヽ(ȍᎲȍ)ﾉ' },
+            { face: '[⸟ᨓ⸟]' },
+            { face: '【꘠‸꘠】' },
+            { face: 'ʕ•ᗜ•ʔ' },
+            { face: '【-ѽ-】' },
+            { face: ' ͡⎚╭͜ʖ╮ ͡⎚' },
+            { face: '¯\_@ᗜ@_/¯' }
         ],
         isShowGif: false,
         status: '',
         query: '',
         keyApi: "S5DI6R8Mq2NZsLgkLAUgk5gULADJ0j2f",
-        limit: '3',
+        limit: '10',
         gifs: []
     },
     created: function () {
@@ -60,26 +74,17 @@ new Vue({
             }
             this.messages.push(infoMsg);
         }.bind(this));
-
-        //add messages load here like up for onlineusers
-        /*
-        
-        here!!
-        
-        */
-
-        //if server emits 'chat.message', update messages array
         socket.on('chat.message', function (message) {
-            if( message.text == ''){
+            if (message.text == '') {
                 return;
             }
-            if( message.text.includes("/media")){
+            if (message.text.includes("/media")) {
                 message.text = '<img src="' + message.text + '">';
                 message.isGif = true;
             }
             this.messages.push(message);
             var i = this.messages.lastIndexOf(message);
-            if(this.messages[i].text == '!hello')
+            if (this.messages[i].text == '!hello')
                 this.$refs.myDiv.play();
             this.autoScroll();
         }.bind(this));
@@ -110,11 +115,6 @@ new Vue({
             }
             this.messages.push(infoMsg);
         }.bind(this));
-    },
-    computed: {
-        helloDarkness: function () {
-            //function to music Hę?!
-        }
     },
     methods: {
         send: function () {
@@ -151,14 +151,13 @@ new Vue({
         },
         lennyToInput: function (lenny) {
             this.message.text += lenny.face;
-
         },
         loadGif: function () {
             this.gifs = [];
             this.status = 'Loading...';
             var vm = this;
             axios.get('//api.giphy.com/v1/gifs/search?q=' + this.query + "&api_key=" + this.keyApi + "&limit=" + this.limit).then(function (response) {
-                for(var i = 0; i < vm.limit ; i++){
+                for (var i = 0; i < vm.limit; i++) {
                     vm.status = response.data.data[i].images.preview_gif.url.slice(6);
                     vm.gifs.push(vm.status);
                 }
@@ -166,17 +165,13 @@ new Vue({
                 vm.status = 'Error ' + error;
             })
         },
-        autoScroll: function(){
+        autoScroll: function () {
             var elem = document.getElementById('main-body');
             elem.scrollTop = elem.scrollHeight;
-            console.log(elem.scrollTop + "  "+ elem.scrollHeight);
         },
-        sendGif: function (gif){
-            console.log(gif);
+        sendGif: function (gif) {
             this.message.text = gif;
             this.send();
         }
     }
-});
-
-
+})

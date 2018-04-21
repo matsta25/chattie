@@ -1,0 +1,159 @@
+:root{
+  --red-color: #DB3340; 
+  --orange-color: #E8B71A;
+  --gray-color: #F7EAC8;
+  --green-color: #1FDA9A;
+  --blue-color: #28ABE3;
+  --blue-color--light: rgb(79, 186, 231);
+}
+
+/* color styling */
+
+.mdl-layout__drawer-button, .mdl-grid, .mdl-layout__header-row{
+  background-color: var(--blue-color) !important; 
+  color: var(--gray-color) !important;
+}
+
+button{
+  background-color: var(--blue-color--light) !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(252, 190, 190) !important;
+}
+
+*{
+  font-family: 'Titillium Web', sans-serif;
+
+}
+
+/* animation user ist typing */
+@keyframes blink {50% { color: transparent }}
+.loader__dot { animation: 1s blink infinite }
+.loader__dot:nth-child(2) { animation-delay: 250ms }
+.loader__dot:nth-child(3) { animation-delay: 500ms }
+
+
+/* main body  */
+#main-body{
+  height: 500px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+
+/* footer input */
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #3F51B5;
+  /* height: 60px; */
+
+}
+.footer-input{
+  display: inline !important;
+}
+
+/* lenny-faces  */
+.lenny-faces-list{
+  list-style: none;
+  display: -webkit-box;
+  width: 100%;
+
+  overflow-x: auto;
+}
+.lenny-faces-list, li{
+  margin: 0 5px;
+  padding-bottom: 5px;
+}
+
+li > div{
+  cursor: pointer;
+  min-width: 100px;
+}
+
+/* gif list */
+.gifs-list{
+  width: 100%;
+  display: inline-flex;
+
+  overflow-x: auto;
+
+}
+
+.gifs-list > li {
+  list-style: none;
+  cursor: pointer;
+
+  padding-bottom: 5px;
+}
+
+li > img{
+  height: 100%;
+  max-width: 200px;
+  margin: 5px;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: slategray;
+}
+
+::-webkit-scrollbar-track {
+  background: #b8c0c8;
+}
+
+body {
+  scrollbar-face-color: slategray;
+  scrollbar-track-color: #b8c0c8;
+}
+
+/* main-body list */
+#main-body > ul {
+  padding: 10px 10px;
+}
+
+.message-content{
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 800px) {
+  .timed{
+    display: none;
+  }
+}
+
+.timed{
+  float: right;
+  color: black;
+}
+
+/* preloader */
+#preloader{
+  background: #1a2a6c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #fdbb2d, #b21f1f, #1a2a6c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;left: 0; right: 0;
+  z-index: 1000;
+  transition: opacity .8s ease;
+}
+
+#preloader.preloader-hiding{
+  opacity: 0;
+}
+
+#preloader.preloader-hidden{
+  display: none;
+}
