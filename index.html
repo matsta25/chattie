@@ -85,15 +85,14 @@
 
         <div class="footer">
           <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-              <div class="lenny-faces-list" v-show="isShow">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" v-show="isShow">
+              <div class="lenny-faces-list">
                 <li v-for="lenny in lennys">
                   <div class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" v-on:click="lennyToInput(lenny)">{{ lenny.face }}</div>
                 </li>
               </div>
             </div>
-            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-              <div v-show="isShowGif">
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" v-show="isShowGif">
                 <input class="mdl-textfield__input" v-model="query" type="text" v-on:keyup.13="loadGif()" placeholder="Gif search">
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                 </div>
@@ -102,7 +101,6 @@
                     <img v-on:click="sendGif(gif); isShowGif= false" v-bind:src="gif">
                   </li>
                 </div>
-              </div>
             </div>
             <div class="mdl-cell mdl-cell--10-col mdl-cell--6-col-tablet mdl-cell--2-col-phone">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label footer-input">
