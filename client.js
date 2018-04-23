@@ -7,7 +7,6 @@ window.addEventListener('load', function () {
         this.classList.remove('preloader-hiding');
     });
 });
-
 var socket = io();
 
 new Vue({
@@ -55,7 +54,7 @@ new Vue({
         status: '',
         query: '',
         keyApi: "S5DI6R8Mq2NZsLgkLAUgk5gULADJ0j2f",
-        limit: '1',
+        limit: '10',
         gifs: []
     },
     created: function () {
