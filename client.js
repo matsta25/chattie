@@ -55,7 +55,7 @@ new Vue({
         status: '',
         query: '',
         keyApi: "S5DI6R8Mq2NZsLgkLAUgk5gULADJ0j2f",
-        limit: '10',
+        limit: '1',
         gifs: []
     },
     created: function () {
