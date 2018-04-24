@@ -4,7 +4,7 @@ DEMO GIF:
 
 <img src="https://github.com/matsta25/em-chat/blob/master/e-m_demogif.gif" alt="alt tag" style="max-width:100%;">
 
-This is simple chat with gifs, lenny faces.
+This is simple chat with gifs and lenny faces.
 
 ### Prerequisites
 

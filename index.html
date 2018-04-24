@@ -19,11 +19,13 @@
 </head>
 
 <body>
-    <div id="preloader">
-      </div>
+  <div id="fb-root"></div>
+  </div>
+  <div id="preloader">
+  </div>
   <div id="app">
 
-   
+
 
     <audio id="myDiv" ref="myDiv">
       <source src="/static/sounds/helloDarkness.ogg" type="audio/ogg">
@@ -37,6 +39,20 @@
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" target="_blank" href="//github.com/matsta25/em-chat">GitHub</a>
+            <a class="mdl-navigation__link" target="_tab" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fe-m.herokuapp.com%2F&amp;src=sdkpreparse"
+              class="fb-xfbml-parse-ignore">
+              <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons" data-href="https://e-m.herokuapp.com/" data-layout="button" data-size="large" data-mobile-iframe="true">share</i>
+              </button>
+            </a>
+          </nav>
+          <nav class="mdl-navigation mdl-layout--small-screen-only">
+            <a class="mdl-navigation__link" target="_tab" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fe-m.herokuapp.com%2F&amp;src=sdkpreparse"
+              class="fb-xfbml-parse-ignore">
+              <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons" data-href="https://e-m.herokuapp.com/" data-layout="button" data-size="large" data-mobile-iframe="true">share</i>
+              </button>
+            </a>
           </nav>
         </div>
       </header>
@@ -93,14 +109,14 @@
               </div>
             </div>
             <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone" v-show="isShowGif">
-                <input class="mdl-textfield__input" v-model="query" type="text" v-on:keyup.13="loadGif()" placeholder="Gif search">
-                <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-                </div>
-                <div class="gifs-list" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-                  <li v-for="gif in gifs">
-                    <img v-on:click="sendGif(gif); isShowGif= false" v-bind:src="gif">
-                  </li>
-                </div>
+              <input class="mdl-textfield__input" v-model="query" type="text" v-on:keyup.13="loadGif()" placeholder="Gif search">
+              <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+              </div>
+              <div class="gifs-list" class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <li v-for="gif in gifs">
+                  <img v-on:click="sendGif(gif); isShowGif= false" v-bind:src="gif">
+                </li>
+              </div>
             </div>
             <div class="mdl-cell mdl-cell--10-col mdl-cell--6-col-tablet mdl-cell--2-col-phone">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label footer-input">
@@ -129,4 +145,5 @@
   <script src="/static/js/moment.min.js"></script>
   <script src="client.js"></script>
 </body>
+
 </html>
