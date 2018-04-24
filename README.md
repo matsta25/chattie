@@ -72,7 +72,7 @@ and go to http://localhost:3000/
 ## Authors
 
 * **Mateusz Stańczak** - [matsta25](https://github.com/matsta25)
-* **Igor Kłosiński** - [matsta25](https://github.com/IgorKIX)
+* **Igor Kłosiński** - [IgorKIX](https://github.com/IgorKIX)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
