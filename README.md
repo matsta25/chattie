@@ -8,7 +8,7 @@ This is simple chat with gifs, lenny faces.
 
 ### Prerequisites
 
-To local run you need to install on Debian-based distributios:
+To local run you need to install on Debian-based distributions:
 
 node:
 ```
