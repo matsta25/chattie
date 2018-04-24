@@ -74,7 +74,7 @@ and go to http://localhost:3000/
 * **Mateusz Stańczak** - [matsta25](https://github.com/matsta25)
 * **Igor Kłosiński** - [IgorKIX](https://github.com/IgorKIX)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/matsta25/em-chat/graphs/contributors) who participated in this project.
 
 ## License
 
