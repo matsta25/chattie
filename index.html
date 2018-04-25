@@ -76,26 +76,28 @@
 
       <main class="mdl-layout__content">
         <div class="page-content mdl-list">
-          <div id="main-body">
-            <ul>
-              <li v-for="message in messages" class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                  <i class="material-icons mdl-list__item-icon">person</i>
-                  <div v-if="message.type == 'info'">
-                    {{ message.msg }}
-                  </div>
-                  <div class="message-content" v-if="message.type == 'chat'">
-                    <strong class="primary-font">{{ message.user }}</strong>
-                    <small class="timed">
-                      <span class="glyphicon glyphicon-time"></span>&nbsp;{{ message.timestamp }}</small>
-                    <p v-if="message.text.isGif == true">
-                      {{ message.text }}
-                    </p v-else>
-                    <p v-html="message.text"></p>
-                  </div>
-                </span>
-              </li>
-            </ul>
+          <div id="main-body-box">
+            <div id="main-body">
+              <ul>
+                <li v-for="message in messages" class="mdl-list__item">
+                  <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-icon">person</i>
+                    <div v-if="message.type == 'info'">
+                      {{ message.msg }}
+                    </div>
+                    <div class="message-content" v-if="message.type == 'chat'">
+                      <strong class="primary-font">{{ message.user }}</strong>
+                      <small class="timed">
+                        <span class="glyphicon glyphicon-time"></span>&nbsp;{{ message.timestamp }}</small>
+                      <p v-if="message.text.isGif == true">
+                        {{ message.text }}
+                      </p v-else>
+                      <p v-html="message.text"></p>
+                    </div>
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
