@@ -176,7 +176,9 @@ new Vue({
         },
         autoScroll: function () {
             var elem = document.getElementById('main-body');
-            elem.scrollTop = elem.scrollHeight;
+            setTimeout(() => {
+                elem.scrollTop = elem.scrollHeight;
+            }, 1);
         },
         sendGif: function (gif) {
             this.message.text = gif;
