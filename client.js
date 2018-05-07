@@ -97,8 +97,6 @@ new Vue({
                 this.$refs.myDiv.play();
             this.autoScroll();
         }.bind(this));
-
-        //server emits 'user typing'
         socket.on('user typing', function (username) {
             this.areTyping.push(username);
         }.bind(this));
@@ -110,8 +108,6 @@ new Vue({
                 this.areTyping.splice(index, 1);
             }
         }.bind(this));
-
-        //if server broadcasts 'user left', remove leaving user from connectedUsers array
         socket.on('user left', function (socketId) {
             var index = this.connectedUsers.indexOf(socketId);
             if (index >= -1) {
